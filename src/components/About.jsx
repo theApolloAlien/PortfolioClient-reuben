@@ -68,6 +68,11 @@ export default function About() {
         </div>
 
         <div className="about-side">
+          <div className="about-photo panel reveal">
+            <span className="panel-label mono">PERSONNEL FILE · TAY, REUBEN</span>
+            <img src="/reuben.png" alt="Reuben Tay" loading="lazy" />
+          </div>
+
           <div className="stat-grid reveal">
             {about.stats.map((s) => (
               <div key={s.label} className="stat panel">

@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { site } from '../content.js'
 import PixelBot from './PixelBot.jsx'
 
 export default function Hero() {
-  const stageRef = useRef(null)
   const [tagline, setTagline] = useState(site.tagline)
 
   // Typewriter reveal of the tagline, once, after the load stagger settles.
@@ -25,23 +24,6 @@ export default function Hero() {
     }
   }, [])
 
-  // Mouse parallax on the floating tags (pointer devices only).
-  useEffect(() => {
-    const stage = stageRef.current
-    if (!stage) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    if (!window.matchMedia('(pointer: fine)').matches) return
-    const onMove = (e) => {
-      const r = stage.getBoundingClientRect()
-      const px = (e.clientX - r.left) / r.width - 0.5
-      const py = (e.clientY - r.top) / r.height - 0.5
-      stage.style.setProperty('--px', px.toFixed(3))
-      stage.style.setProperty('--py', py.toFixed(3))
-    }
-    window.addEventListener('mousemove', onMove, { passive: true })
-    return () => window.removeEventListener('mousemove', onMove)
-  }, [])
-
   return (
     <section className="hero" id="top">
       <div className="hero-hud mono">
@@ -54,9 +36,7 @@ export default function Hero() {
         </span>
       </div>
 
-      <div className="hero-stage" ref={stageRef}>
-        <img className="hero-photo hero-in" style={{ animationDelay: '0.25s' }} src="/reuben.png" alt="Reuben Tay" />
-
+      <div className="hero-stage">
         <h1 className="hero-name display" aria-label="Reuben Tay">
           <span className="hero-name-line hero-in" style={{ animationDelay: '0.4s' }}>
             REUBEN
@@ -65,16 +45,6 @@ export default function Hero() {
             TAY
           </span>
         </h1>
-
-        <span className="sticker sticker-1 mono hero-in" style={{ animationDelay: '0.9s' }}>
-          CLOUD ARCHITECTURE
-        </span>
-        <span className="sticker sticker-2 mono hero-in" style={{ animationDelay: '1s' }}>
-          SECURITY & CTF ✦ 1ST PLACE
-        </span>
-        <span className="sticker sticker-3 mono hero-in" style={{ animationDelay: '1.1s' }}>
-          OBSERVABILITY © CSIT
-        </span>
       </div>
 
       <div className="hero-foot">
