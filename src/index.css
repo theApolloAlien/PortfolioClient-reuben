@@ -309,19 +309,13 @@ main {
   overflow: visible;
 }
 
-.bot .bot-body,
-.bot .bot-eyes,
-.bot .bot-light,
-.bot .bot-arm,
-.bot .bot-prop {
+.bot svg,
+.bot svg g {
   animation-play-state: paused;
 }
 
-.bot.bot-running .bot-body,
-.bot.bot-running .bot-eyes,
-.bot.bot-running .bot-light,
-.bot.bot-running .bot-arm,
-.bot.bot-running .bot-prop {
+.bot.bot-running svg,
+.bot.bot-running svg g {
   animation-play-state: running;
 }
 
@@ -353,6 +347,100 @@ main {
 @keyframes bot-pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.45; }
+}
+
+/* locomotion (per-variant walk/run/hop cycles) */
+
+.bot-m-march .bot-leg,
+.bot-m-pace .bot-leg,
+.bot-m-run .bot-leg {
+  animation: bot-step 0.5s steps(1) infinite;
+}
+
+@keyframes bot-step {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.9px); }
+}
+
+/* march in place (officer) */
+.bot-m-march .bot-leg {
+  animation-duration: 0.62s;
+}
+
+.bot-m-march .bot-leg-r {
+  animation-delay: 0.31s;
+}
+
+/* slow thinking pace, no flip (reader) */
+.bot-m-pace svg {
+  animation: bot-pace 7s ease-in-out infinite;
+}
+
+.bot-m-pace .bot-leg {
+  animation-duration: 0.7s;
+}
+
+.bot-m-pace .bot-leg-r {
+  animation-delay: 0.35s;
+}
+
+@keyframes bot-pace {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(9px); }
+  50% { transform: translateX(0); }
+  75% { transform: translateX(-9px); }
+}
+
+/* delivery run, flips at each end (mailer) */
+.bot-m-run svg {
+  animation: bot-run 3.6s linear infinite;
+}
+
+.bot-m-run .bot-leg {
+  animation-duration: 0.28s;
+}
+
+.bot-m-run .bot-leg-r {
+  animation-delay: 0.14s;
+}
+
+@keyframes bot-run {
+  0% { transform: translateX(-14px) scaleX(1); }
+  44% { transform: translateX(14px) scaleX(1); }
+  50% { transform: translateX(14px) scaleX(-1); }
+  94% { transform: translateX(-14px) scaleX(-1); }
+  100% { transform: translateX(-14px) scaleX(1); }
+}
+
+/* occasional double hop woven into the idle bob (greeter) */
+.bot-m-hop .bot-body {
+  animation: bot-hop 4.4s ease-in-out infinite;
+}
+
+@keyframes bot-hop {
+  0%, 55% { transform: translateY(0); }
+  25% { transform: translateY(-0.7px); }
+  62% { transform: translateY(-2.4px); }
+  69% { transform: translateY(0); }
+  76% { transform: translateY(-1.6px); }
+  83%, 100% { transform: translateY(0); }
+}
+
+/* victory jumps when the medal comes out (medalist) */
+.bot-m-jump.bot-act svg {
+  animation: bot-jump 1.5s ease 1;
+}
+
+.bot-m-jump.bot-act .bot-leg {
+  animation: bot-step 0.375s steps(1) 4;
+}
+
+@keyframes bot-jump {
+  0%, 100% { transform: translateY(0); }
+  18% { transform: translateY(-3px); }
+  38% { transform: translateY(0); }
+  55% { transform: translateY(-2px); }
+  72% { transform: translateY(0); }
 }
 
 /* signature actions (one-shot, .bot-act added on scroll-into-view) */

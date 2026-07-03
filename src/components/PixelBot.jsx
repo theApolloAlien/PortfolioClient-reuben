@@ -30,10 +30,30 @@ const BODY = [
   '....DCCCCD....',
   '....DCCCCD....',
   '....DDDDDD....',
-  '....DC..CD....',
-  '....DC..CD....',
-  '...DDD..DDD...',
   '..............',
+  '..............',
+  '..............',
+  '..............',
+]
+
+// Legs live outside the body map so walk cycles can step them independently.
+const LEG_L = [
+  { x: 4, y: 12, c: 'D' },
+  { x: 5, y: 12, c: 'C' },
+  { x: 4, y: 13, c: 'D' },
+  { x: 5, y: 13, c: 'C' },
+  { x: 3, y: 14, c: 'D' },
+  { x: 4, y: 14, c: 'D' },
+  { x: 5, y: 14, c: 'D' },
+]
+const LEG_R = [
+  { x: 8, y: 12, c: 'C' },
+  { x: 9, y: 12, c: 'D' },
+  { x: 8, y: 13, c: 'C' },
+  { x: 9, y: 13, c: 'D' },
+  { x: 8, y: 14, c: 'D' },
+  { x: 9, y: 14, c: 'D' },
+  { x: 10, y: 14, c: 'D' },
 ]
 
 // Pixel coords {x, y} + colour key, layered over/under the body.
@@ -78,11 +98,13 @@ const VARIANTS = {
     arm: ARM_UP,
     armOrigin: [10.5, 8.5],
     action: 'wave',
+    motion: 'hop',
   },
   reader: {
     arm: ARM_DOWN,
     armOrigin: [10.5, 8.5],
     action: 'none',
+    motion: 'pace',
     outfit: [
       // tablet held in front
       { x: 5, y: 10, c: 'D' },
@@ -108,6 +130,7 @@ const VARIANTS = {
     arm: ARM_SALUTE,
     armOrigin: [10.5, 8.5],
     action: 'salute',
+    motion: 'march',
     outfit: [
       // service cap
       { x: 3, y: 1, c: 'A' },
@@ -166,6 +189,7 @@ const VARIANTS = {
     arm: ARM_UP,
     armOrigin: [10.5, 8.5],
     action: 'raise',
+    motion: 'jump',
     outfit: [
       // ribbon + chest medal
       { x: 6, y: 9, c: 'A' },
@@ -184,6 +208,7 @@ const VARIANTS = {
     arm: ARM_UP,
     armOrigin: [10.5, 8.5],
     action: 'wave',
+    motion: 'run',
     outfit: [
       // hoodie rim
       { x: 2, y: 1, c: 'S' },
@@ -256,7 +281,7 @@ export default function PixelBot({ variant = 'greeter', size = 56, className = '
   const antennaHidden = variant === 'mailer' // hood covers the antenna row
 
   return (
-    <span ref={ref} className={`bot bot-${variant} ${className}`} aria-hidden="true">
+    <span ref={ref} className={`bot bot-${variant} bot-m-${v.motion || 'idle'} ${className}`} aria-hidden="true">
       <svg
         width={size}
         height={size * (16 / 14)}
@@ -278,6 +303,8 @@ export default function PixelBot({ variant = 'greeter', size = 56, className = '
           {rects(MOUTH, 'm')}
           <g className="bot-eyes">{rects(EYES, 'e')}</g>
           {v.outfit && rects(v.outfit, 'o')}
+          <g className="bot-leg bot-leg-l">{rects(LEG_L, 'gl')}</g>
+          <g className="bot-leg bot-leg-r">{rects(LEG_R, 'gr')}</g>
           {rects(LEFT_ARM, 'l')}
           <g
             className={`bot-arm bot-arm-${v.action}`}

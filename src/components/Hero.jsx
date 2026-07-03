@@ -31,7 +31,7 @@ export default function Hero() {
           SGP · 1.3521° N / 103.8198° E
         </span>
         <span className="hero-hud-status hero-in" style={{ animationDelay: '0s' }}>
-          <span className="dot" /> SYS.ONLINE · OPEN TO INTERNSHIPS
+          <span className="dot" /> SYS.ONLINE
           <span className="cursor" aria-hidden="true" />
         </span>
       </div>
