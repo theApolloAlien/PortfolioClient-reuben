@@ -423,8 +423,7 @@ body.page-hidden .bot-arm,
 body.page-hidden .bot-prop,
 body.page-hidden .marquee-track,
 body.page-hidden .grid-layer,
-body.page-hidden .scanlines,
-body.page-hidden .sticker {
+body.page-hidden .scanlines {
   animation-play-state: paused !important;
 }
 
