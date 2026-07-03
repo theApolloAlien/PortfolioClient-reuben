@@ -1,5 +1,7 @@
 # Reuben Tay · Portfolio
 
+**Live: [portfolio-reuben.vercel.app](https://portfolio-reuben.vercel.app)**
+
 Single-page portfolio for Reuben Tay (Cybersecurity & Cloud Architecture, CS @ NTU).
 
 Vite + React. Dark "command deck" aesthetic: oversized Anton display type, JetBrains Mono HUD labels, a single amber accent on near-black, pixel-robot section mascots, glass panels with corner brackets, and a restrained sci-fi animation system (scramble headers, count-up stats, timeline draw). All motion respects `prefers-reduced-motion`.
