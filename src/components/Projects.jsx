@@ -32,7 +32,7 @@ export default function Projects() {
         title="PROJECTS"
         note={
           <a className="section-note-link" href="#also-built">
-            FEATURED 5 OF 9 · REST BELOW ↓
+            5 FEATURED · FULL REPO INDEX BELOW ↓
           </a>
         }
         bot="builder"
@@ -78,11 +78,16 @@ export default function Projects() {
       </div>
 
       <div className="also-built panel reveal" id="also-built">
-        <span className="panel-label mono">ALSO BUILT · 4 MORE</span>
+        <span className="panel-label mono">ALSO BUILT · FULL REPO INDEX, AND COUNTING</span>
         <ul className="also-built-list">
-          {alsoBuilt.map((line) => (
-            <li key={line} className="mono">
-              {line}
+          {alsoBuilt.map((repo) => (
+            <li key={repo.url}>
+              <a className="also-built-link" href={repo.url} target="_blank" rel="noreferrer">
+                <span className="also-built-name">{repo.name}</span>
+                <span className="also-built-repo mono">
+                  {repo.url.replace('https://github.com/', '')} ↗
+                </span>
+              </a>
             </li>
           ))}
         </ul>

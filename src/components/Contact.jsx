@@ -11,13 +11,19 @@ export default function Contact() {
         <br />
         TOUCH <span className="contact-arrow">→</span>
       </h2>
-      <a className="contact-email reveal" href={`mailto:${site.email}`}>
+      <a
+        className="contact-email reveal"
+        href={`mailto:${site.email}?subject=${encodeURIComponent(
+          "Let's connect, Reuben",
+        )}&body=${encodeURIComponent('Hi Reuben,\n\n')}`}
+      >
         {site.email}
       </a>
 
       <div className="contact-links reveal">
         <a className="mono" href={site.github} target="_blank" rel="noreferrer">GitHub ↗</a>
         <a className="mono" href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        <a className="mono" href={site.secondary} target="_blank" rel="noreferrer">Secondary Site ↗</a>
       </div>
 
       <footer className="footer mono">

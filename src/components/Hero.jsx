@@ -57,8 +57,9 @@ export default function Hero() {
           </div>
         </div>
         <div className="hero-roles hero-in" style={{ animationDelay: '0.65s' }}>
-          <span>{site.roles[0]}</span>
-          <span>{site.roles[1]}</span>
+          {site.roles.map((line) => (
+            <span key={line}>{line}</span>
+          ))}
           <p className="hero-tagline mono">{tagline}</p>
         </div>
       </div>

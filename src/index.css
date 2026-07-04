@@ -102,6 +102,64 @@ main {
   93% { opacity: 0.03; }
 }
 
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.4px 1.4px at 12% 18%, rgba(237, 231, 214, 0.75), transparent),
+    radial-gradient(1px 1px at 24% 62%, rgba(237, 231, 214, 0.5), transparent),
+    radial-gradient(1.6px 1.6px at 38% 28%, rgba(244, 181, 74, 0.65), transparent),
+    radial-gradient(1px 1px at 47% 78%, rgba(237, 231, 214, 0.55), transparent),
+    radial-gradient(1.3px 1.3px at 58% 12%, rgba(237, 231, 214, 0.6), transparent),
+    radial-gradient(1px 1px at 66% 46%, rgba(237, 231, 214, 0.45), transparent),
+    radial-gradient(1.5px 1.5px at 74% 72%, rgba(244, 181, 74, 0.55), transparent),
+    radial-gradient(1px 1px at 82% 24%, rgba(237, 231, 214, 0.55), transparent),
+    radial-gradient(1.2px 1.2px at 90% 58%, rgba(237, 231, 214, 0.5), transparent),
+    radial-gradient(1px 1px at 6% 84%, rgba(237, 231, 214, 0.4), transparent),
+    radial-gradient(1.3px 1.3px at 33% 92%, rgba(237, 231, 214, 0.45), transparent),
+    radial-gradient(1px 1px at 95% 88%, rgba(244, 181, 74, 0.4), transparent);
+  opacity: 0.5;
+  animation: twinkle 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.32; }
+  to { opacity: 0.6; }
+}
+
+.shooting-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 160px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(244, 181, 74, 0.15), rgba(255, 244, 224, 0.95));
+  border-radius: 2px;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(244, 181, 74, 0.55));
+  transform: translate3d(0, 0, 0) rotate(16deg);
+  animation: shoot 14s linear infinite;
+}
+
+.shooting-star:nth-child(1) { top: 10%; left: -14%; animation-delay: 2s; }
+.shooting-star:nth-child(2) { top: 26%; left: -14%; animation-delay: 7.5s; animation-duration: 17s; }
+.shooting-star:nth-child(3) { top: 6%; left: -14%; animation-delay: 12s; animation-duration: 21s; }
+
+@keyframes shoot {
+  0% { transform: translate3d(0, 0, 0) rotate(16deg); opacity: 0; }
+  1.5% { opacity: 1; }
+  9% { transform: translate3d(128vw, 40vh, 0) rotate(16deg); opacity: 0; }
+  100% { transform: translate3d(128vw, 40vh, 0) rotate(16deg); opacity: 0; }
+}
+
 /* ---------- Nav ---------- */
 
 .nav {
@@ -230,7 +288,7 @@ main {
   justify-content: center;
   align-items: center;
   gap: 0.18em;
-  font-size: clamp(4rem, 15vw, 14rem);
+  font-size: clamp(3.2rem, 11.5vw, 10.5rem);
   line-height: 0.85;
   color: var(--cream);
   pointer-events: none;
@@ -511,6 +569,8 @@ body.page-hidden .bot-arm,
 body.page-hidden .bot-prop,
 body.page-hidden .marquee-track,
 body.page-hidden .grid-layer,
+body.page-hidden .starfield,
+body.page-hidden .shooting-star,
 body.page-hidden .scanlines {
   animation-play-state: paused !important;
 }
@@ -671,10 +731,19 @@ body.page-hidden .scanlines {
 
 /* ---------- About ---------- */
 
+/* Two columns, two rows: [copy | photo] over [education | stats].
+   align-items:start keeps education's top level with the stat boxes. */
 .about-grid {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
-  gap: 2.5rem;
+  align-items: start;
+  column-gap: 2.5rem;
+  row-gap: 1.6rem;
+}
+
+.about-copy {
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .about-copy p {
@@ -683,15 +752,21 @@ body.page-hidden .scanlines {
   font-size: 1.02rem;
 }
 
-.about-side {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
 .about-photo {
+  grid-column: 2;
+  grid-row: 1;
   padding-bottom: 0;
   overflow: hidden;
+}
+
+.about-edu {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.stat-grid {
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .about-photo img {
@@ -712,6 +787,11 @@ body.page-hidden .scanlines {
 
 .stat {
   padding: 1.1rem 1.2rem;
+}
+
+/* balance an odd final stat by spanning it full width */
+.stat-grid .stat:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
 }
 
 .stat-value {
@@ -995,12 +1075,42 @@ body.page-hidden .scanlines {
 
 .also-built-list {
   list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2rem;
 }
 
 .also-built-list li {
-  color: var(--muted);
-  padding: 0.4rem 0;
   border-top: 1px solid var(--line);
+}
+
+.also-built-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  transition: color 0.2s;
+}
+
+.also-built-name {
+  color: #c9c4b4;
+  font-size: 0.92rem;
+  transition: color 0.2s;
+}
+
+.also-built-repo {
+  color: var(--muted);
+  white-space: nowrap;
+  font-size: 0.62rem;
+}
+
+.also-built-link:hover .also-built-name {
+  color: var(--amber);
+}
+
+.also-built-link:hover .also-built-repo {
+  color: var(--amber);
 }
 
 /* ---------- Skills ---------- */
@@ -1096,11 +1206,12 @@ body.page-hidden .scanlines {
 
 .contact-email {
   display: inline-block;
-  font-size: clamp(1.1rem, 2.6vw, 1.7rem);
-  font-weight: 600;
+  font-size: clamp(0.85rem, 1.7vw, 1.05rem);
+  font-weight: 500;
+  color: var(--muted);
   border: 1px solid var(--line);
   border-radius: 99px;
-  padding: 0.8rem 2.2rem;
+  padding: 0.5rem 1.5rem;
   transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
@@ -1113,17 +1224,23 @@ body.page-hidden .scanlines {
 .contact-links {
   display: flex;
   justify-content: center;
-  gap: 2.2rem;
-  margin: 2.4rem 0 5rem;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.6rem;
+  margin: 2.2rem 0 5rem;
 }
 
 .contact-links a {
-  color: var(--muted);
-  transition: color 0.2s;
+  font-family: var(--mono);
+  font-size: clamp(1.15rem, 2.8vw, 1.75rem);
+  letter-spacing: 0.04em;
+  color: var(--cream);
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .contact-links a:hover {
   color: var(--amber);
+  border-color: var(--amber);
 }
 
 .footer {
@@ -1142,6 +1259,19 @@ body.page-hidden .scanlines {
   .about-grid,
   .creds-grid,
   .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* stack About in source order: copy, photo, education, stats */
+  .about-copy,
+  .about-photo,
+  .about-edu,
+  .stat-grid {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .also-built-list {
     grid-template-columns: 1fr;
   }
 
@@ -1265,7 +1395,12 @@ body.page-hidden .scanlines {
     animation: none;
   }
 
-  .grid-layer {
+  .grid-layer,
+  .starfield {
     animation: none;
+  }
+
+  .shooting-star {
+    display: none;
   }
 }

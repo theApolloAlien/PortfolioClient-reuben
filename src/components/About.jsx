@@ -67,34 +67,32 @@ export default function About() {
           ))}
         </div>
 
-        <div className="about-side">
-          <div className="about-photo panel reveal">
-            <span className="panel-label mono">PERSONNEL FILE · TAY, REUBEN</span>
-            <img src="/reuben.png" alt="Reuben Tay" loading="lazy" />
-          </div>
+        <div className="about-photo panel reveal">
+          <span className="panel-label mono">PERSONNEL FILE · TAY, REUBEN</span>
+          <img src="/reuben.png" alt="Reuben Tay" loading="lazy" />
+        </div>
 
-          <div className="stat-grid reveal">
-            {about.stats.map((s) => (
-              <div key={s.label} className="stat panel">
-                <StatValue value={s.value} />
-                <span className="stat-label mono">{s.label}</span>
+        <div className="edu panel reveal about-edu" data-delay="120">
+          <span className="panel-label mono">EDUCATION</span>
+          {about.education.map((e) => (
+            <div key={e.school} className="edu-item">
+              <div className="edu-top">
+                <strong>{e.school}</strong>
+                <span className="mono edu-period">{e.period}</span>
               </div>
-            ))}
-          </div>
+              <span className="edu-degree">{e.degree}</span>
+              <span className="edu-detail mono">{e.detail}</span>
+            </div>
+          ))}
+        </div>
 
-          <div className="edu panel reveal" data-delay="120">
-            <span className="panel-label mono">EDUCATION</span>
-            {about.education.map((e) => (
-              <div key={e.school} className="edu-item">
-                <div className="edu-top">
-                  <strong>{e.school}</strong>
-                  <span className="mono edu-period">{e.period}</span>
-                </div>
-                <span className="edu-degree">{e.degree}</span>
-                <span className="edu-detail mono">{e.detail}</span>
-              </div>
-            ))}
-          </div>
+        <div className="stat-grid reveal">
+          {about.stats.map((s) => (
+            <div key={s.label} className="stat panel">
+              <StatValue value={s.value} />
+              <span className="stat-label mono">{s.label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

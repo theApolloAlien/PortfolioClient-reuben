@@ -1,23 +1,25 @@
 export const site = {
   name: 'Reuben Tay',
-  roles: ['Cybersecurity &', 'Cloud Architecture'],
+  roles: ['Cybersecurity,', 'Cloud Architecture', '& Software Engineering'],
   tagline: 'CS @ NTU · I build secure, observable cloud systems, and turn hard problems into wins.',
   email: 'reubentaykk@gmail.com',
   linkedin: 'https://www.linkedin.com/in/reubentay/',
   github: 'https://github.com/firepryo',
+  secondary: 'https://reubentaykk.wixsite.com/reuben',
 }
 
 export const about = {
   short:
-    "Reuben is a Computer Science undergraduate at NTU and an aspiring Cybersecurity / Cloud Architect Engineer. He's built production observability at CSIT, placed 1st in a Google hardware CTF, and ships AI-powered products, pairing cloud-and-security depth with a builder's love of hackathons.",
+    "Reuben is a 2nd-year Computer Science undergraduate at NTU and an aspiring Cybersecurity / Cloud Architect Engineer. He's built production observability at CSIT, placed 1st in a Google hardware CTF, and ships AI-powered products, pairing cloud-and-security depth with a builder's love of hackathons.",
   full: [
-    "I'm a Computer Science undergraduate at Nanyang Technological University and an aspiring Cybersecurity / Cloud Architect Engineer. My path runs from a Diploma in Computer Engineering and a CSIT cloud internship, where I built production Prometheus and Grafana observability that cut incident response time and cloud costs, through national service as a Section 2IC leading a team of seven, to a current Salesforce analyst internship and a run of hackathons and CTFs, including a 1st-place finish at a Google hardware Capture-The-Flag.",
-    'Inspired by the belief that "you can never get too comfortable," I keep pushing into new territory: cloud architecture, security, and AI-powered products like Stratify. Outside tech, I lead orientation for 1,000+ freshmen, program large-scale hall events, play floorball and frisbee, and have volunteered in my community for over a decade.',
+    "I'm Reuben, a 2nd Year Computer Science undergraduate at Nanyang Technological University and an aspiring Cybersecurity / Cloud Architect Engineer. My path runs from a Diploma in Computer Engineering and a CSIT cloud infrastructure internship, where I built production Prometheus and Grafana observability that cut incident response time and cloud costs, through national service as a Section 2IC leading a team of seven, to a current Salesforce analyst internship and a run of hackathons and CTFs, including a 1st-place finish at a Google hardware Capture-The-Flag.",
+    'Inspired by the belief that "you can never get too comfortable," I keep pushing into new territory: cloud architecture, security, and AI-powered products. Outside tech, I lead orientation for 1,000+ freshmen, program large-scale hall events, play various sports, and consistently volunteer in my community for over a decade and counting.',
   ],
   stats: [
     { value: '1st', label: 'Google Hardware CTF · 20 teams' },
     { value: '30%', label: 'Cloud cost reduction @ CSIT' },
-    { value: '9+', label: 'Projects & competitions' },
+    { value: '10+', label: 'Projects built' },
+    { value: '20+', label: 'Hackathons & CTFs, and counting' },
     { value: '1,000+', label: 'Freshmen led in orientation' },
   ],
   education: [
@@ -31,7 +33,7 @@ export const about = {
       school: 'Singapore Polytechnic',
       degree: 'Diploma in Computer Engineering',
       period: '2020–2023',
-      detail: 'GPA 3.57/4.0 · CSIT Diploma Scholarship · AWS Cloud Architecting · Network Fundamentals',
+      detail: 'CSIT Diploma Scholarship · AWS Cloud Architecting · Network Fundamentals',
     },
   ],
 }
@@ -147,32 +149,54 @@ export const projects = [
   },
 ]
 
+// Full public repo index (rendered under "Also built"). Featured work above
+// is repeated here so every GitHub project is reachable in one place.
 export const alsoBuilt = [
-  'MindfulHacks · gamified mental-health Android app (6th of 30 teams)',
-  'Enterprise Network Architecture · DHCP, NAT, subnetting in Cisco Packet Tracer',
-  'Food Limits · food-waste marketplace (JavaFX desktop + Android)',
+  { name: 'Stratify · AI-Powered Career Platform', url: 'https://github.com/firepryo/TECHFEST-2026-TEAM-4-STRATIFY' },
+  { name: 'Combat Arena · Turn-Based Battle Game', url: 'https://github.com/firepryo/SC2002-Combat-Arena-Group-5-FCS2' },
+  { name: 'Lumina · Quick-Meet Companion App', url: 'https://github.com/firepryo/Beyond_Binary_2026_Lumina' },
+  { name: 'MindfulHacks · Gamified Mental-Health Android App', url: 'https://github.com/firepryo/MindfulHacks-2022' },
+  { name: 'Food Limits · Food-Waste Marketplace (Android)', url: 'https://github.com/firepryo/Food-Limits-Android-Studio-' },
+  { name: '3rd-Year Machine Learning & AI', url: 'https://github.com/firepryo/3rdYrMLAI' },
+  { name: 'Data Structures & Algorithms', url: 'https://github.com/firepryo/DataStructAlgo' },
+  { name: 'Python Mini-Projects', url: 'https://github.com/firepryo/Python-Mini' },
+  { name: 'Google IT Automation with Python · Practice Files', url: 'https://github.com/firepryo/it-cert-automation-practice' },
 ]
 
 export const skills = [
   { group: 'Languages', items: ['Java', 'C / C++', 'Python', 'SQL', 'JavaScript / TypeScript', 'PowerShell', 'HTML / CSS'] },
-  { group: 'Cloud & Infrastructure', items: ['AWS (CloudFormation, EC2, RDS, VPC)', 'GCP / Azure', 'Docker', 'Firebase'] },
+  {
+    group: 'Cloud & Infrastructure',
+    items: ['AWS (CloudFormation, EC2, RDS, VPC)', 'Kubernetes', 'Docker & Containerisation', 'Windows Server Management', 'GCP / Azure', 'Firebase'],
+  },
+  { group: 'Databases', items: ['MSSQL', 'SQL', 'NoSQL', 'PostgreSQL / MySQL / MongoDB'] },
   { group: 'Networking & Security', items: ['Cisco Packet Tracer', 'DNS · DHCP · NAT', 'IPv4 Subnetting', 'WAN/LAN', 'CTF'] },
   { group: 'Observability', items: ['Prometheus', 'Grafana'] },
   { group: 'Frameworks', items: ['React', 'Node.js / Express', 'Spring Boot', 'TensorFlow / PyTorch', 'scikit-learn'] },
-  { group: 'Data & Tooling', items: ['PostgreSQL / MySQL / MongoDB', 'Git / GitHub', 'Linux / Bash', 'Jira', 'Figma', 'Salesforce'] },
+  { group: 'Data & Tooling', items: ['Git / GitHub', 'Linux / Bash', 'Jira', 'Figma', 'Salesforce'] },
 ]
 
 export const certifications = [
-  { name: 'AWS Certified Cloud Practitioner', year: '2022' },
   { name: 'Google AI Essentials', year: '2026' },
+  { name: 'Google Cybersecurity', year: '2026' },
+  { name: 'Google Digital Marketing & E-Commerce', year: '2026' },
+  { name: 'Google Advanced Data Analytics', year: '2026' },
+  { name: 'Google Business Intelligence', year: '2026' },
+  { name: 'Salesforce Certified Platform Administrator', year: 'est. Jul 2026', pending: true },
+  { name: '10-Year Long Service Award · CDAC', year: '2013–Present' },
+  { name: 'AWS Certified Cloud Practitioner', year: '2022' },
   { name: 'Google IT Automation with Python', year: '2022' },
-  { name: 'Salesforce Administrator', year: 'est. Aug 2026', pending: true },
-  { name: 'CSIT Diploma Scholarship', year: '2021–23' },
-  { name: '10-Year Long Service Volunteer Award · CDAC', year: '2025' },
+  { name: 'Google Project Management', year: '2022' },
+  { name: 'Google UX Design', year: '2022' },
+  { name: 'Google IT Support', year: '2022' },
+  { name: 'CSIT Diploma Scholarship', year: '2021–2023' },
+  { name: 'And more · currently pursuing AWS Skill Builder badges', year: 'Ongoing', pending: true },
 ]
 
 export const leadership = [
   { role: 'Chief Group Leader', org: 'CCDS Transitional Orientation Programme', detail: 'Directs 10 orientation leaders onboarding 1,000+ freshmen.' },
   { role: 'Chief Programmer (Event Logic)', org: 'Hall 6 Night Cycling', detail: 'Event flow + gamification mechanics for 200+ participants.' },
-  { role: 'Sports & Clubs', org: 'Hall 6 · NTU', detail: 'Ultimate frisbee, floorball, volleyball · SCDS Sports Sub-Committee · Hall 6 JCRC.' },
+  { role: 'Exco Member', org: 'CDAC Youth Club', detail: 'Jan 2026–Present · youth community programmes and leadership.' },
+  { role: 'Class Chairperson', org: 'Singapore Polytechnic', detail: '2020–2021 · represented and coordinated the cohort.' },
+  { role: 'Sports & Clubs', org: 'Hall 6 · NTU', detail: 'Ultimate frisbee, floorball, volleyball · Hall 6 JCRC Subcommittee.' },
 ]
